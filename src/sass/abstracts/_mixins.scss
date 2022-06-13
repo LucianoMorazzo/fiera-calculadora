@@ -1,0 +1,5 @@
+$base-size: 16;
+@function size($target, $context: $base-size) {
+  @return ($target / $context) * 1em;
+}
+

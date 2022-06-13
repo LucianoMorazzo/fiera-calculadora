@@ -1,0 +1,19 @@
+@use '../abstracts/colors' as c;
+.og-btn{
+  background-color: c.$color-og;
+  color: c.$color-white;
+}
+
+.grey-btn{
+  background-color: c.$color-grey;
+  color: c.$color-black;
+}
+
+.og-btn:hover, .grey-btn:hover{
+  opacity: 0.7;
+}
+
+.og-btn:active, .grey-btn:active{
+  box-shadow: 3px 2px 22px 1px rgba(0, 0, 0, 0.24);
+}
+
