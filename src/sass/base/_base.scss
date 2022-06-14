@@ -33,6 +33,7 @@ html, body{
   display: flex;
   align-items: end;
   justify-content: end;
+  flex-direction: column;
 }
 
 .calc-wrapper{
