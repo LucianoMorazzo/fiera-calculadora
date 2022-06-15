@@ -1,26 +1,65 @@
 import React, { ChangeEvent, useState } from 'react'
 
+type OperationT = (a: number, b: number) => number;
+
+interface CalculatorData {
+  firstNum: string,
+  secondNum: string,
+  operation: OperationT
+}
+
+
 export const Calculator = () => {
+  const [data, setData] = useState<Partial<CalculatorData>>({});
 
-  const [firstNum, setfirstNum] = useState("0");
-  const [preNum, setPreNum] = useState("0");
-  const [op, setOp] = useState( () => {} );
+  // const [firstNum, setfirstNum] = useState("0");
+  // const [secondNum, setsecondNum] = useState("0");
+  // const [preNum, setpreNum] = useState("0");
+  // const [Operation, setOperation] = useState<OperationT>( );
 
-
+  const suma: OperationT = (a: number, b: number) => a + b;
   
 
+
+
   const clean = () => {
-    setfirstNum("0");
-    setPreNum("0");
+    setData({});
   }
 
   const buildNumber = ( textNumber: string ) => {
-    if( firstNum === "0")
-      setfirstNum( textNumber );
-    else
-      setfirstNum( firstNum + textNumber);
+    debugger
+    if(!data.operation){
+      setData(prev => ({
+        ...prev,
+        firstNum: prev.firstNum === "0" ? textNumber : prev.firstNum + textNumber      
+      }));
+    } else {
+      setData(prev => ({
+        ...prev,
+        secondNum: prev.secondNum === "0" ? textNumber : prev.secondNum + textNumber      
+      }));
+    }
+  }
+
+  const handleOperation = (op: OperationT) => {
+    if (Operation){
+      let value = Operation(parseInt(firstNum), parseInt(secondNum));
+      setfirstNum(value.toString());
+      setsecondNum("");
+    }
+
+    setOperation(op);
   }
  
+  const handleEqual = () => {
+    if( !firstNum || !secondNum || !Operation)
+      return
+    let value = Operation(parseInt(firstNum), parseInt(secondNum));
+    setfirstNum(value.toString());
+    setsecondNum("");
+
+    setOperation(undefined);
+  }
 
   return (
     <div>
@@ -48,11 +87,11 @@ export const Calculator = () => {
         <button onClick={() => buildNumber("1")} className='grey-btn'>1</button>
         <button onClick={() => buildNumber("2")} className='grey-btn'>2</button>
         <button onClick={() => buildNumber("3")} className='grey-btn'>3</button>
-        <button className='og-btn'>+</button>
+        <button onClick={() => handleOperation(suma)} className='og-btn'>+</button>
       </div>
       <div className="two-items container">
         <button onClick={() => buildNumber("0")} className='grey-btn'>0</button>
-        <button className='og-btn'>=</button>
+        <button onClick={handleEqual} className='og-btn'>=</button>
       </div>
     </div>
   )
