@@ -1,22 +1,14 @@
 import React, { useState } from 'react'
+import { CalculatorData, OperationT } from '../utils/interfaces';
+import { add, sub, mult, div } from '../utils/operations';
 
-type OperationT = (a: number, b: number) => number;
 
-interface CalculatorData {
-  firstNum: string,
-  secondNum: string,
-  operation: OperationT
-}
 
 
 export const Calculator = () => {
   const [data, setData] = useState<Partial<CalculatorData>>({});
 
-  const suma: OperationT = (a: number, b: number) => a + b;
-  
-
-
-
+ 
   const clean = () => {
     setData({});
   }
@@ -71,25 +63,25 @@ export const Calculator = () => {
       </div>
       <div className="two-items container">
         <button onClick={clean} className='grey-btn'>C</button>
-        <button className='og-btn'>%</button>
+        <button onClick={() => handleOperation(div)} className='og-btn' disabled={!data.secondNum || parseInt(data.secondNum) === 0} >%</button>
       </div>
       <div className="four-items  container">
         <button onClick={() => buildNumber("7")} className='grey-btn'>7</button>
         <button onClick={() => buildNumber("8")} className='grey-btn' >8</button>
         <button onClick={() => buildNumber("9")} className='grey-btn' >9</button>
-        <button className='og-btn'>X</button>
+        <button onClick={() => handleOperation(mult)} className='og-btn'>X</button>
       </div>
       <div className="four-items container">
         <button onClick={() => buildNumber("4")} className='grey-btn'>4</button>
         <button onClick={() => buildNumber("5")} className='grey-btn'>5</button>
         <button onClick={() => buildNumber("6")} className='grey-btn'>6</button>
-        <button className='og-btn'>-</button>
+        <button onClick={() => handleOperation(sub)} className='og-btn'>-</button>
       </div>
       <div className="four-items container">
         <button onClick={() => buildNumber("1")} className='grey-btn'>1</button>
         <button onClick={() => buildNumber("2")} className='grey-btn'>2</button>
         <button onClick={() => buildNumber("3")} className='grey-btn'>3</button>
-        <button onClick={() => handleOperation(suma)} className='og-btn'>+</button>
+        <button onClick={() => handleOperation(add)} className='og-btn'>+</button>
       </div>
       <div className="two-items container">
         <button onClick={() => buildNumber("0")} className='grey-btn'>0</button>
