@@ -1,4 +1,3 @@
-import './App.scss'
 import { Calculator } from './components/Calculator'
 
 const App = () => {
