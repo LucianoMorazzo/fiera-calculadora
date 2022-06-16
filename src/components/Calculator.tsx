@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useState } from 'react'
+import React, { useState } from 'react'
 
 type OperationT = (a: number, b: number) => number;
 
@@ -27,45 +27,52 @@ export const Calculator = () => {
   }
 
   const buildNumber = ( textNumber: string ) => {
-    debugger
     if(!data.operation){
       setData(prev => ({
         ...prev,
-        firstNum: prev.firstNum === "0" ? textNumber : prev.firstNum + textNumber      
+        firstNum: !prev.firstNum ? textNumber : prev.firstNum + textNumber      
       }));
     } else {
       setData(prev => ({
         ...prev,
-        secondNum: prev.secondNum === "0" ? textNumber : prev.secondNum + textNumber      
+        secondNum: !prev.secondNum ? textNumber : prev.secondNum + textNumber      
       }));
     }
   }
 
   const handleOperation = (op: OperationT) => {
-    if (Operation){
-      let value = Operation(parseInt(firstNum), parseInt(secondNum));
-      setfirstNum(value.toString());
-      setsecondNum("");
+    const { operation, firstNum, secondNum } = data;
+    if (operation && firstNum && secondNum){
+      let value = operation(parseInt(firstNum), parseInt(secondNum));
+      setData({
+        firstNum: value.toString(),
+      });
     }
 
-    setOperation(op);
+    setData( prev => ({
+      ...prev,
+      operation: op 
+    }));
   }
  
   const handleEqual = () => {
-    if( !firstNum || !secondNum || !Operation)
-      return
-    let value = Operation(parseInt(firstNum), parseInt(secondNum));
-    setfirstNum(value.toString());
-    setsecondNum("");
+    const { firstNum, secondNum, operation} = data;
 
-    setOperation(undefined);
+    if( !firstNum || !secondNum || !operation)
+      return
+    
+    let value = operation(parseInt(firstNum), parseInt(secondNum));
+
+    setData({
+      firstNum: value.toString(),
+    });
+
   }
 
   return (
     <div>
       <div className="display container">
-        <h2>{preNum}</h2>
-        <h2>{firstNum}</h2>
+        <h2>{data.secondNum ? data.secondNum : data.firstNum}</h2>
       </div>
       <div className="two-items container">
         <button onClick={clean} className='grey-btn'>C</button>
