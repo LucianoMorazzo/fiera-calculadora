@@ -12,11 +12,6 @@ interface CalculatorData {
 export const Calculator = () => {
   const [data, setData] = useState<Partial<CalculatorData>>({});
 
-  // const [firstNum, setfirstNum] = useState("0");
-  // const [secondNum, setsecondNum] = useState("0");
-  // const [preNum, setpreNum] = useState("0");
-  // const [Operation, setOperation] = useState<OperationT>( );
-
   const suma: OperationT = (a: number, b: number) => a + b;
   
 
