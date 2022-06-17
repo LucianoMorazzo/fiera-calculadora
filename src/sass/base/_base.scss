@@ -1,13 +1,16 @@
 @use '../abstracts/colors' as c;
-@use '../abstracts/mixins';
+@use '../abstracts/fonts' as f;
+
 html, body{
-  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-family: f.$roboto-font;
+  font-weight: bold;
 }
 
-.site-container{
+.calculator-container{
   margin-inline: auto;
   margin-inline: auto;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   height: 100vh;
@@ -31,9 +34,11 @@ html, body{
 .display{
   background-color: c.$color-black;
   display: flex;
-  align-items: end;
+  align-items: center;
   justify-content: end;
-  flex-direction: column;
+  flex-direction: row;
+  padding: 0 18px;
+  color: c.$color-white;
 }
 
 .calc-wrapper{

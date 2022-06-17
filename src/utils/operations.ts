@@ -7,4 +7,4 @@ export const sub: OperationT = (a: number, b: number) => a - b;
 
 export const mult: OperationT = (a: number, b: number) => a * b;
 
-export const div: OperationT = (a: number, b: number) => a / b;
+export const div: OperationT = (a: number, b: number) => Math.round((a / b)* 100) / 100;

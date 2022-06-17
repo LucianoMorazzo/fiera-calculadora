@@ -3,8 +3,6 @@ import { CalculatorData, OperationT } from '../utils/interfaces';
 import { add, sub, mult, div } from '../utils/operations';
 
 
-
-
 export const Calculator = () => {
   const [data, setData] = useState<Partial<CalculatorData>>({});
 
@@ -57,13 +55,13 @@ export const Calculator = () => {
   }
 
   return (
-    <div>
+    <div className='calculator-container'>
       <div className="display container">
         <h2>{data.secondNum ? data.secondNum : data.firstNum}</h2>
       </div>
       <div className="two-items container">
         <button onClick={clean} className='grey-btn'>C</button>
-        <button onClick={() => handleOperation(div)} className='og-btn' disabled={!data.secondNum || parseInt(data.secondNum) === 0} >%</button>
+        <button onClick={() => handleOperation(div)} className='og-btn' >%</button>
       </div>
       <div className="four-items  container">
         <button onClick={() => buildNumber("7")} className='grey-btn'>7</button>

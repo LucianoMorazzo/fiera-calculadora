@@ -1,12 +1,16 @@
 @use '../abstracts/colors' as c;
+@use '../abstracts/mixins' as m;
+
 .og-btn{
   background-color: c.$color-og;
   color: c.$color-white;
+  font-size: m.size(20);
 }
 
 .grey-btn{
   background-color: c.$color-grey;
   color: c.$color-black;
+  font-size: m.size(20);
 }
 
 .og-btn:hover, .grey-btn:hover{
