@@ -1,16 +1,21 @@
 @use '../abstracts/colors' as c;
 @use '../abstracts/mixins' as m;
+@use '../abstracts/queries' as q;
 
 .og-btn{
   background-color: c.$color-og;
   color: c.$color-white;
-  font-size: m.size(20);
 }
 
 .grey-btn{
   background-color: c.$color-grey;
-  color: c.$color-black;
+  color: c.$color-greyish;
+}
+
+.og-btn,.grey-btn{
   font-size: m.size(20);
+  border: 1px solid c.$color-white;
+  font-weight: bold;
 }
 
 .og-btn:hover, .grey-btn:hover{
@@ -21,3 +26,12 @@
   box-shadow: 3px 2px 22px 1px rgba(0, 0, 0, 0.24);
 }
 
+
+//MEDIA QUERIES
+
+@media (min-width: q.$tablet){
+  .og-btn,.grey-btn{
+    font-size: m.size(35);
+    font-weight: bold;
+  }
+}

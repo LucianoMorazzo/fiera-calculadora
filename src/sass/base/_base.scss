@@ -1,9 +1,11 @@
 @use '../abstracts/colors' as c;
 @use '../abstracts/fonts' as f;
+@use '../abstracts/queries' as q;
 
 html, body{
   font-family: f.$roboto-font;
   font-weight: bold;
+  -webkit-font-smoothing: antialiased;
 }
 
 .calculator-container{
@@ -18,7 +20,7 @@ html, body{
 
 .container{
   width: 18rem;
-  height: 3rem;
+  height: 5rem;
 }
 
 .two-items{
@@ -43,4 +45,26 @@ html, body{
 
 .calc-wrapper{
   width: 115px;
+}
+
+//MEDIA QUERIES 
+
+@media (min-width: q.$small-phone){
+  .container{
+    width: 20rem;
+  }
+}
+
+@media (min-width: q.$tablet){
+    .container{
+      width: 30rem;
+      height: 6rem;
+    }
+}
+
+@media (min-width: q.$notebook){
+  .container{
+    width: 36rem;
+    height: 7rem;
+  }
 }

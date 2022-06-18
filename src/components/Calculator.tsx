@@ -29,6 +29,7 @@ export const Calculator = () => {
     const { operation, firstNum, secondNum } = data;
     if (operation && firstNum && secondNum){
       let value = operation(parseInt(firstNum), parseInt(secondNum));
+      
       setData({
         firstNum: value.toString(),
       });
