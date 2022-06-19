@@ -1,6 +1,7 @@
 @use '../abstracts/colors' as c;
 @use '../abstracts/fonts' as f;
 @use '../abstracts/queries' as q;
+@use '../abstracts/mixins' as m;
 
 html, body{
   font-family: f.$roboto-font;
@@ -41,6 +42,7 @@ html, body{
   flex-direction: row;
   padding: 0 18px;
   color: c.$color-white;
+  font-size: m.size(18);
 }
 
 .calc-wrapper{
@@ -55,10 +57,15 @@ html, body{
   }
 }
 
+
 @media (min-width: q.$tablet){
     .container{
       width: 30rem;
       height: 6rem;
+    }
+    .display{
+      font-size: m.size(35);
+      font-weight: bold;
     }
 }
 
