@@ -1,6 +1,6 @@
 describe('empty spec', () => {
   it('web principal abre y realiza una sumatoria', () => {
-    cy.visit('localhost:3000')
+    cy.visit('https://fiera-calculadora.vercel.app/')
 
     cy.contains('2').click()
 
